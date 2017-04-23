@@ -18,7 +18,7 @@ export class FoldersComponent implements OnInit {
     let item: string;
 
     for(i = 0; i < 10; i++) {
-      item = Array(i).join("labas ");
+      item = Array(i).join("labas rytas ");
       this.test.push(item);
     }
 
