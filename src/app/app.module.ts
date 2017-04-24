@@ -6,12 +6,14 @@ import { HttpModule } from '@angular/http';
 import { AppComponent } from './app.component';
 import { FoldersComponent } from './folders/folders.component';
 import { HeaderComponent } from './header/header.component';
+import { FolderComponent } from './folders/folder/folder.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     FoldersComponent,
-    HeaderComponent
+    HeaderComponent,
+    FolderComponent
   ],
   imports: [
     BrowserModule,

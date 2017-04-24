@@ -1,5 +1,6 @@
 import { Component, OnInit, Input } from '@angular/core';
 
+import { Folder } from '../shared/folder.model';
 import { FolderManager } from '../shared/folder-manager.model';
 
 
@@ -9,19 +10,22 @@ import { FolderManager } from '../shared/folder-manager.model';
   styleUrls: ['./folders.component.css']
 })
 export class FoldersComponent implements OnInit {
-  @Input() folderManager: FolderManager;
-  //TODO
-  test: string[] = [];
+  _folderManager: FolderManager;
+  focusedFolder: Folder = undefined;
 
   constructor() {
+  }
+
+  @Input()
+  set folderManager(folderManager: FolderManager) {
+    this._folderManager = folderManager;
     let i: number;
-    let item: string;
-
-    for(i = 0; i < 10; i++) {
-      item = Array(i).join("labas rytas ");
-      this.test.push(item);
+    let name: string;
+    let parent: Folder = this._folderManager.folder
+    for(i = 1; i < 10; i++) {
+      name = Array(i).join("labas rytas ");
+      parent.addChild(new Folder(name));
     }
-
   }
 
   ngOnInit() {

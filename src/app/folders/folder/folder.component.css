@@ -1,0 +1,14 @@
+.folder-container {
+  float: left;
+  max-width: 90px;
+  margin: 10px;
+  background-color: LightGrey;
+}
+
+.folder-image-container {
+  padding: 0% 20% 0% 20%;
+}
+
+.folder-text-container {
+  text-align: center;
+}
