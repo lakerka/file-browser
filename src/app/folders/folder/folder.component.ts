@@ -1,7 +1,7 @@
 import { Component, OnInit, Input, ElementRef } from '@angular/core';
 
 import { Folder } from '../../shared/folder.model';
-
+import { FolderManager } from '../../shared/folder-manager.model';
 
 @Component({
   selector: 'app-folder',
@@ -10,18 +10,20 @@ import { Folder } from '../../shared/folder.model';
 })
 export class FolderComponent implements OnInit {
   @Input() folder: Folder;
+  @Input() folderManager: FolderManager;
+
   isClicked: boolean = false;
   elementRef: ElementRef;
 
-  constructor(myElement: ElementRef) {
-    this.elementRef = myElement;
+  constructor(elementRef: ElementRef) {
+    this.elementRef = elementRef;
   }
 
   ngOnInit() {
   }
 
   handleClick(event: MouseEvent) {
-    let clickedElement = event.target;
+    let clickedElement: Node = event.target as Node;
     let isClicked: boolean = false;
      do {
        if (clickedElement == this.elementRef.nativeElement) {

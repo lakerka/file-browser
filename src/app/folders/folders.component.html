@@ -1,5 +1,6 @@
 <div class="container">
   <app-folder *ngFor="let folder of _folderManager.folder.children;"
+              [folderManager]="_folderManager"
               [folder]="folder">
   </app-folder>
 </div>
