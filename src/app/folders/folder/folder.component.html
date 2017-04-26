@@ -1,11 +1,15 @@
-<div [dragula]='"bag-one"'>
-  <div class="folder-container"
+<div dnd-droppable (onDropSuccess)="onDrop($event)">
+  <div dnd-draggable
+       [dragEnabled]="true"
+       [dragData]="folder"
+       class="folder-container"
        (document:click)="handleClick($event);"
        (dblclick)="folderManager.stepForward(folder)">
     <div>
       <div class="folder-image-container">
-        <img class="img-responsive"
-             src="http://www.myiconfinder.com/uploads/iconsets/4f94676102875105a45813863830795d-folder.png" alt="">
+        <img class="img-responsive img-non-draggable"
+             src="http://www.myiconfinder.com/uploads/iconsets/4f94676102875105a45813863830795d-folder.png"
+             alt="">
       </div>
       <div class="folder-text-container">{{ getName() }}</div>
     </div>

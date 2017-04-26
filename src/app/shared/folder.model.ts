@@ -16,4 +16,12 @@ export class Folder {
     child.parent = this;
     this.children.push(child);
   }
+
+  removeChild(child: Folder) {
+    let idx: number = this.children.indexOf(child);
+    if (idx != -1) {
+      this.children.splice(idx, 1);
+      child.parent = undefined;
+    }
+  }
 }

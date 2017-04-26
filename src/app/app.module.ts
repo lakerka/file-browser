@@ -4,6 +4,7 @@ import { FormsModule } from '@angular/forms';
 import { HttpModule } from '@angular/http';
 
 import { DragulaService, DragulaModule } from 'ng2-dragula/ng2-dragula';
+import { DndModule } from 'ng2-dnd';
 
 import { AppComponent } from './app.component';
 import { FoldersComponent } from './folders/folders.component';
@@ -22,7 +23,8 @@ import { FolderComponent } from './folders/folder/folder.component';
     FormsModule,
     HttpModule,
 
-    DragulaModule
+    DragulaModule,
+    DndModule.forRoot(),
   ],
   providers: [DragulaService],
   bootstrap: [AppComponent]

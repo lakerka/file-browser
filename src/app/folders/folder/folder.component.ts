@@ -44,4 +44,9 @@ export class FolderComponent implements OnInit {
 
     return name;
   }
+
+  onDrop(event: any) {
+    let source = event.dragData;
+    this.folderManager.moveFolder(source, this.folder);
+  }
 }

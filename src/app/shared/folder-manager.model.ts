@@ -39,4 +39,9 @@ export class FolderManager {
   setFolder(folder: Folder) {
     this.folder = folder;
   }
+
+  moveFolder(source: Folder, target: Folder) {
+    source.parent.removeChild(source);
+    target.addChild(source);
+  }
 }
