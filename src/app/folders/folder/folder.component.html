@@ -1,8 +1,10 @@
-<div dnd-droppable (onDropSuccess)="onDrop($event)">
-  <div dnd-draggable
+<div dnd-droppable [dropEnabled]="isDroppable" (onDropSuccess)="onDrop($event)">
+  <div class="folder-container"
+       dnd-draggable
        [dragEnabled]="true"
        [dragData]="folder"
-       class="folder-container"
+       (dragstart)="onDragStart();"
+       (dragend)="onDragEnd();"
        (document:click)="handleClick($event);"
        (dblclick)="folderManager.stepForward(folder)">
     <div>

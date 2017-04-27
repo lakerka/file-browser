@@ -13,6 +13,7 @@ export class FolderComponent implements OnInit {
   @Input() folderManager: FolderManager;
 
   isClicked: boolean = false;
+  isDroppable: boolean = true;
   elementRef: ElementRef;
 
   constructor(elementRef: ElementRef) {
@@ -46,7 +47,17 @@ export class FolderComponent implements OnInit {
   }
 
   onDrop(event: any) {
-    let source = event.dragData;
-    this.folderManager.moveFolder(source, this.folder);
+    let source: Folder = event.dragData;
+    if (source != this.folder) {
+      this.folderManager.moveFolder(source, this.folder);
+    }
+  }
+
+  onDragStart() {
+    this.isDroppable = false;
+  }
+
+  onDragEnd() {
+    this.isDroppable = true;
   }
 }
