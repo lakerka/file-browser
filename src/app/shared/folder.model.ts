@@ -12,6 +12,14 @@ export class Folder {
     return this.parent != undefined;
   }
 
+  hasChild(folder: Folder) {
+    let isChild: boolean = false;
+    for(let child of this.children) {
+      isChild = isChild || (child == folder);
+    }
+    return isChild;
+  }
+
   addChild(child: Folder) {
     child.parent = this;
     this.children.push(child);

@@ -10,15 +10,16 @@
       <button type="button"
               class="btn btn-default"
               [disabled]="!folderManager.canStepForward()"
-              (click)="folderManager.stepForward()">
+              (click)="folderManager.stepForward(folderManager.getNextInPath())">
         <span class="glyphicon glyphicon-menu-right"></span>
       </button>
     </div>
     <div class="btn-group" role="group">
       <button type="button"
               class="btn btn-default navbar-btn"
+              *ngFor="let folder of folderManager.path"
               [ngClass]="{'active': folder == folderManager.folder }"
-              *ngFor="let folder of folderManager.path">
+              (click)="folderManager.setFolder(folder);">
         {{ folder.name }}
       </button>
     </div>
