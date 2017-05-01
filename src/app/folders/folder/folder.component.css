@@ -38,3 +38,24 @@
 .dnd-drag-over {
     border-style: none;
 }
+
+.pop-over-content {
+  margin-bottom: 0px;
+}
+
+.pop-over-button {
+  border-left: 0px;
+  border-right: 0px;
+}
+
+.pop-over-button:last-child {
+  border-bottom: 0px;
+}
+
+.pop-over-button:first-child {
+  border-top: 0px;
+}
+
+.pop-over-button:focus, .pop-over-button:active:focus, .pop-over-button.active:focus {
+  outline: 0 none;
+}

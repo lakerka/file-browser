@@ -1,4 +1,8 @@
-<div dnd-droppable [dropEnabled]="isDroppable" (onDropSuccess)="onDrop($event)">
+<div dnd-droppable
+     [dropEnabled]="isDroppable"
+     (onDropSuccess)="onDrop($event)"
+     [pop-over-trigger]="folderPopover"
+     (contextmenu)="showPopover($event, folderPopover)">
   <div class="folder-container"
        dnd-draggable
        [dragEnabled]="true"
@@ -17,3 +21,16 @@
     </div>
   </div>
 </div>
+
+
+<pop-over #folderPopover
+          [my]="'top left'"
+          [at]="'bottom right'">
+  <div class="list-group pop-over-content">
+
+    <button type="button" class="list-group-item list-group-item-action pop-over-button">Cut</button>
+    <button type="button" class="list-group-item list-group-item-action pop-over-button">Copy</button>
+    <button type="button" class="list-group-item list-group-item-action pop-over-button">Paste</button>
+    <button type="button" class="list-group-item list-group-item-action pop-over-button">Delete</button>
+  </div>
+</pop-over>

@@ -22,7 +22,7 @@ export class FoldersComponent implements OnInit {
     let i: number;
     let name: string;
     let parent: Folder = this._folderManager.folder
-    for(i = 1; i < 10; i++) {
+    for(i = 2; i < 10; i++) {
       name = Array(i).join("labas rytas ");
       parent.addChild(new Folder(name));
     }

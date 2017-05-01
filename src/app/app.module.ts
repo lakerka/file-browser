@@ -3,8 +3,8 @@ import { NgModule } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { HttpModule } from '@angular/http';
 
-import { DragulaService, DragulaModule } from 'ng2-dragula/ng2-dragula';
 import { DndModule } from 'ng2-dnd';
+import { PopoverModule } from 'ng2-pop-over';
 
 import { AppComponent } from './app.component';
 import { FoldersComponent } from './folders/folders.component';
@@ -23,10 +23,10 @@ import { FolderComponent } from './folders/folder/folder.component';
     FormsModule,
     HttpModule,
 
-    DragulaModule,
     DndModule.forRoot(),
+    PopoverModule,
   ],
-  providers: [DragulaService],
+  providers: [],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
