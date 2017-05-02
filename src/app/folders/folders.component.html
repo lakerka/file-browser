@@ -1,6 +1,28 @@
-<div class="container">
+<div class="container full-height"
+     [pop-over-trigger]="folderPopover"
+     (contextmenu)="showPopover($event, folderPopover);">
   <app-folder *ngFor="let folder of _folderManager.folder.children;"
               [folderManager]="_folderManager"
-              [folder]="folder">
+              [folder]="folder"
+              (contextmenu)="setSelectedFolder(folder);">
   </app-folder>
 </div>
+
+<pop-over #folderPopover
+          [my]="'top left'"
+          [at]="'bottom right'">
+  <div class="list-group pop-over-content z-depth-2">
+    <button type="button" class="list-group-item list-group-item-action pop-over-button"
+            [ngClass]="{ 'disabled': isCutCopyDeleteDisabled() }"
+            (click)="cut(); folderPopover.hide();">Cut</button>
+    <button type="button" class="list-group-item list-group-item-action pop-over-button"
+            [ngClass]="{ 'disabled': isCutCopyDeleteDisabled() }"
+            (click)="copy(); folderPopover.hide();">Copy</button>
+    <button type="button" class="list-group-item list-group-item-action pop-over-button"
+            [ngClass]="{ 'disabled': isPasteDisabled() }"
+            (click)="paste(); folderPopover.hide();">Paste</button>
+    <button type="button" class="list-group-item list-group-item-action pop-over-button"
+            [ngClass]="{ 'disabled': isCutCopyDeleteDisabled() }"
+            (click)="delete(); folderPopover.hide();">Delete</button>
+  </div>
+</pop-over>

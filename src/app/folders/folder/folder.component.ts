@@ -60,9 +60,4 @@ export class FolderComponent implements OnInit {
   onDragEnd() {
     this.isDroppable = true;
   }
-
-  showPopover(event: MouseEvent, popover: any) {
-    popover.show(event);
-    event.preventDefault();
-  }
 }

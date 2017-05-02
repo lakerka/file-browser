@@ -1,0 +1,26 @@
+.full-height {
+    min-height: 100%;
+    height: 100%;
+}
+
+.pop-over-content {
+  margin-bottom: 0px;
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+}
+
+.pop-over-button {
+  border-left: 0px;
+  border-right: 0px;
+}
+
+.pop-over-button:last-child {
+  border-bottom: 0px;
+}
+
+.pop-over-button:first-child {
+  border-top: 0px;
+}
+
+.pop-over-button:focus, .pop-over-button:active:focus, .pop-over-button.active:focus {
+  outline: 0 none;
+}
