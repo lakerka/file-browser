@@ -1,21 +1,37 @@
 <div dnd-droppable
      [dropEnabled]="isDroppable"
-     (onDropSuccess)="onDrop($event)">
+     [pop-over-trigger]="folderPopover"
+     (onDropSuccess)="onDrop($event)"
+     (dblclick)="folderManager.stepForward(folder);"
+     (document:contextmenu)="handleContextMenu($event, folderPopover);"
+     (contextmenu)="handleContextMenu($event, folderPopover);">
   <div class="folder-container"
        dnd-draggable
        [dragEnabled]="true"
        [dragData]="folder"
        (dragstart)="onDragStart();"
-       (dragend)="onDragEnd();"
-       (document:click)="handleClick($event);"
-       (dblclick)="folderManager.stepForward(folder)">
+       (dragend)="onDragEnd();">
     <div>
       <div class="folder-image-container">
         <img class="img-responsive img-non-draggable"
              src="http://www.myiconfinder.com/uploads/iconsets/4f94676102875105a45813863830795d-folder.png"
              alt="">
       </div>
-      <div class="folder-text-container">{{ getName() }}</div>
+      <div class="folder-text-container">{{ folder.name }}</div>
     </div>
   </div>
 </div>
+
+
+<pop-over #folderPopover
+          [my]="'top left'"
+          [at]="'bottom right'">
+  <div class="list-group pop-over-content z-depth-2">
+    <button type="button" class="list-group-item list-group-item-action pop-over-button"
+            (click)="folderManager.cut(folder); folderPopover.hide();">Cut</button>
+    <button type="button" class="list-group-item list-group-item-action pop-over-button"
+            (click)="folderManager.copy(folder); folderPopover.hide();">Copy</button>
+    <button type="button" class="list-group-item list-group-item-action pop-over-button"
+            (click)="folderManager.delete(folder); folderPopover.hide();">Delete</button>
+  </div>
+</pop-over>

@@ -1,28 +1,22 @@
-<div class="container full-height"
-     [pop-over-trigger]="folderPopover"
-     (contextmenu)="showPopover($event, folderPopover);">
+<div #folderscontainer
+     class="container full-height"
+     [pop-over-trigger]="foldersPopover"
+     (document:contextmenu)="handleContextMenu($event, foldersPopover);"
+     (contextmenu)="handleContextMenu($event, foldersPopover);">
   <app-folder *ngFor="let folder of _folderManager.folder.children;"
               [folderManager]="_folderManager"
-              [folder]="folder"
-              (contextmenu)="setSelectedFolder(folder);">
+              [folder]="folder">
   </app-folder>
 </div>
 
-<pop-over #folderPopover
+<pop-over #foldersPopover
           [my]="'top left'"
           [at]="'bottom right'">
   <div class="list-group pop-over-content z-depth-2">
     <button type="button" class="list-group-item list-group-item-action pop-over-button"
-            [ngClass]="{ 'disabled': isCutCopyDeleteDisabled() }"
-            (click)="cut(); folderPopover.hide();">Cut</button>
+            (click)="_folderManager.createNewFolder(); foldersPopover.hide();">New folder</button>
     <button type="button" class="list-group-item list-group-item-action pop-over-button"
-            [ngClass]="{ 'disabled': isCutCopyDeleteDisabled() }"
-            (click)="copy(); folderPopover.hide();">Copy</button>
-    <button type="button" class="list-group-item list-group-item-action pop-over-button"
-            [ngClass]="{ 'disabled': isPasteDisabled() }"
-            (click)="paste(); folderPopover.hide();">Paste</button>
-    <button type="button" class="list-group-item list-group-item-action pop-over-button"
-            [ngClass]="{ 'disabled': isCutCopyDeleteDisabled() }"
-            (click)="delete(); folderPopover.hide();">Delete</button>
+            [ngClass]="{ 'disabled': !_folderManager.canPaste() }"
+            (click)="_folderManager.paste(); foldersPopover.hide();">Paste</button>
   </div>
 </pop-over>
