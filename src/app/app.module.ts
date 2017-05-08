@@ -16,7 +16,7 @@ import { FolderComponent } from './folders/folder/folder.component';
     AppComponent,
     FoldersComponent,
     HeaderComponent,
-    FolderComponent
+    FolderComponent,
   ],
   imports: [
     BrowserModule,

@@ -1,4 +1,4 @@
-import { Component, OnInit, Input, ViewChild, ElementRef } from '@angular/core';
+import { Component, OnInit, Input, ViewChild, ElementRef, ViewContainerRef } from '@angular/core';
 
 import { PopOverComponent } from '../../../node_modules/ng2-pop-over/pop-over.component.d';
 
@@ -15,6 +15,7 @@ import { Utils } from '../shared/utils';
 export class FoldersComponent implements OnInit {
   _folderManager: FolderManager;
   @ViewChild('folderscontainer') foldersContainer: ElementRef;
+  @ViewChild('foldernamemodal') folderModal: ElementRef;
 
   constructor() {
   }
@@ -42,5 +43,9 @@ export class FoldersComponent implements OnInit {
     } else {
         popover.hide();
     }
+  }
+
+  handleNewFolderClick(event: MouseEvent, popover: PopOverComponent) {
+      popover.show(event);
   }
 }

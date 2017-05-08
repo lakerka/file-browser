@@ -14,9 +14,25 @@
           [at]="'bottom right'">
   <div class="list-group pop-over-content z-depth-2">
     <button type="button" class="list-group-item list-group-item-action pop-over-button"
-            (click)="_folderManager.createNewFolder(); foldersPopover.hide();">New folder</button>
+            (click)="handleNewFolderClick($event, newfolderpopover); foldersPopover.hide();">New folder
+    </button>
     <button type="button" class="list-group-item list-group-item-action pop-over-button"
             [ngClass]="{ 'disabled': !_folderManager.canPaste() }"
-            (click)="_folderManager.paste(); foldersPopover.hide();">Paste</button>
+            (click)="_folderManager.paste(); foldersPopover.hide();">Paste
+    </button>
   </div>
+</pop-over>
+
+
+<pop-over #newfolderpopover
+          [my]="'top middle'"
+          [at]="'bottom center'">
+      <form data-toggle="validator" class="form-inline" class="folder-name-container">
+        <div class="form-group">
+          <label for="folder-name">Folder name</label>
+          <input type="text" pattern="^[^/]+$" maxlength="15" class="form-control" id="folder-name">
+        </div>
+        <div class="btn btn-default">Create</div>
+        <div class="btn btn-default">Cancel</div>
+      </form>
 </pop-over>
