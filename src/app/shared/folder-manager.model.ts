@@ -62,7 +62,7 @@ export class FolderManager {
     }
   }
 
-  canStepForward() {
+  canStepForward(): boolean {
     return this.folder.children.length > 0;
   }
 
@@ -95,7 +95,7 @@ export class FolderManager {
   }
 
   copy(folder: Folder) {
-    this.copiedFolder = folder;
+    this.copiedFolder = folder.clone();
     this.cutFolder = undefined;
   }
 
@@ -115,12 +115,29 @@ export class FolderManager {
     if (this.copiedFolder !== undefined) {
       this.folder.addChild(this.copiedFolder.clone());
     } else if (this.cutFolder !== undefined) {
-      this.cutFolder.parent.removeChild(this.cutFolder);
+      if (this.cutFolder.hasParent()) {
+        this.cutFolder.parent.removeChild(this.cutFolder);
+      }
       this.folder.addChild(this.cutFolder.clone());
     }
   }
 
   canPaste(): boolean {
-    return this.copiedFolder !== undefined || this.cutFolder !== undefined;
+    let canPaste: boolean;;
+    if (this.cutFolder !== undefined) {
+      canPaste = true;
+      let folder: Folder = this.cutFolder;
+      while (folder.hasParent()) {
+        folder = folder.parent;
+        if (folder === this.cutFolder) {
+          canPaste = false;
+          break;
+        }
+      }
+    } else {
+      canPaste = this.copiedFolder !== undefined;
+    }
+
+    return canPaste;
   }
 }

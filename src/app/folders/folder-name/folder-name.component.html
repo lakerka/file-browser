@@ -8,7 +8,9 @@
              class="form-control"
              type="text"
              maxlength="25"
-             formControlName="name">
+             formControlName="name"
+             (keyup.enter)= performAction();
+             (keyup.esc)= cancelAction();>
       <div class="help-block with-errors">
         <div [hidden]="!folderForm.get('name').hasError('required')">Name is required.</div>
         <div [hidden]="!folderForm.get('name').hasError('nameAlreadyExists')">Name already exists.</div>

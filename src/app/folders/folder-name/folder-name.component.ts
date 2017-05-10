@@ -46,6 +46,9 @@ export class FolderNameComponent implements OnInit {
   }
 
   performAction() {
+    if (!this.folderForm.valid) {
+      return;
+    }
     this.action.emit(this.folderForm.get('name').value);
     this.clear();
   }
