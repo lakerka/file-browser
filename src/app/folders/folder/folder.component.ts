@@ -1,6 +1,6 @@
 import { Component, OnInit, Input, ElementRef } from '@angular/core';
 
-import { PopOverComponent } from '../../../../node_modules/ng2-pop-over/pop-over.component.d';
+import { PopOverComponent } from 'ng2-pop-over/pop-over.component';
 
 import { Folder } from '../../shared/folder.model';
 import { FolderManager } from '../../shared/folder-manager.model';
@@ -49,5 +49,9 @@ export class FolderComponent implements OnInit {
 
   onDragEnd() {
     this.isDroppable = true;
+  }
+
+  renameFolder(newFolderName: string) {
+    this.folder.name = newFolderName;
   }
 }

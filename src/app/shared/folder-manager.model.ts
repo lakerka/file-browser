@@ -42,7 +42,7 @@ export class FolderManager {
     this.path = curPath;
   }
 
-  getNextInPath(): Folder {
+  getNextInPath(): Folder | undefined {
     let i: number = this.path.indexOf(this.folder)
     let next: Folder = undefined;
     if (i + 1 < this.path.length) {

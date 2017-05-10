@@ -1,6 +1,6 @@
-import { Component, OnInit, Input, ViewChild, ElementRef, ViewContainerRef } from '@angular/core';
+import { Component, OnInit, Input, ViewChild, ElementRef } from '@angular/core';
 
-import { PopOverComponent } from '../../../node_modules/ng2-pop-over/pop-over.component.d';
+import { PopOverComponent } from 'ng2-pop-over/pop-over.component';
 
 import { FolderManager } from '../shared/folder-manager.model';
 import { Folder } from '../shared/folder.model';
@@ -13,24 +13,10 @@ import { Utils } from '../shared/utils';
   styleUrls: ['./folders.component.css']
 })
 export class FoldersComponent implements OnInit {
-  _folderManager: FolderManager;
   @ViewChild('folderscontainer') foldersContainer: ElementRef;
-  @ViewChild('foldernamemodal') folderModal: ElementRef;
+  @Input() folderManager: FolderManager;
 
-  constructor() {
-  }
-
-  @Input()
-  set folderManager(folderManager: FolderManager) {
-    this._folderManager = folderManager;
-    let i: number;
-    let name: string;
-    let parent: Folder = this._folderManager.folder
-    for(i = 2; i < 10; i++) {
-      name = Array(i).join("labas rytas ");
-      parent.addChild(new Folder(name));
-    }
-  }
+  constructor() {}
 
   ngOnInit() {
   }
@@ -41,11 +27,12 @@ export class FoldersComponent implements OnInit {
       popover.show(event);
       event.preventDefault();
     } else {
-        popover.hide();
+      popover.hide();
     }
   }
 
-  handleNewFolderClick(event: MouseEvent, popover: PopOverComponent) {
-      popover.show(event);
+  createNewFolder(newFolderName: string) {
+    let newFolder: Folder = new Folder(newFolderName);
+    this.folderManager.folder.addChild(newFolder);
   }
 }

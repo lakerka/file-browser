@@ -14,7 +14,7 @@
     <div>
       <div class="folder-image-container">
         <img class="img-responsive img-non-draggable"
-             src="http://www.myiconfinder.com/uploads/iconsets/4f94676102875105a45813863830795d-folder.png"
+             src="assets/images/folder.png"
              alt="">
       </div>
       <div class="folder-text-container">{{ folder.name }}</div>
@@ -28,10 +28,14 @@
           [at]="'bottom right'">
   <div class="list-group pop-over-content z-depth-2">
     <button type="button" class="list-group-item list-group-item-action pop-over-button"
-            (click)="folderManager.cut(folder); folderPopover.hide();">Cut</button>
+            (click)="foldername.show($event); folderPopover.hide();">Rename</button>
     <button type="button" class="list-group-item list-group-item-action pop-over-button"
             (click)="folderManager.copy(folder); folderPopover.hide();">Copy</button>
+    <button type="button" class="list-group-item list-group-item-action pop-over-button"
+            (click)="folderManager.cut(folder); folderPopover.hide();">Cut</button>
     <button type="button" class="list-group-item list-group-item-action pop-over-button"
             (click)="folderManager.delete(folder); folderPopover.hide();">Delete</button>
   </div>
 </pop-over>
+
+<app-folder-name #foldername (action)="renameFolder($event);" [actionText]="'Rename'" [folderManager]="folderManager"></app-folder-name>

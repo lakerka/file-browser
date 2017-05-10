@@ -9,7 +9,7 @@
       </button>
       <button type="button"
               class="btn btn-default"
-              [disabled]="!folderManager.canStepForward()"
+              [disabled]="!folderManager.canStepForward() || folderManager.getNextInPath() === undefined"
               (click)="folderManager.stepForward(folderManager.getNextInPath())">
         <span class="glyphicon glyphicon-menu-right"></span>
       </button>
@@ -18,7 +18,7 @@
       <button type="button"
               class="btn btn-default navbar-btn"
               *ngFor="let folder of folderManager.path"
-              [ngClass]="{'active': folder == folderManager.folder }"
+              [ngClass]="{'active': folder === folderManager.folder }"
               (click)="folderManager.setFolder(folder);">
         {{ folder.name }}
       </button>
