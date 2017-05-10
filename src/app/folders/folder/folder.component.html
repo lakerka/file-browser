@@ -1,8 +1,11 @@
 <div dnd-droppable
+     [ngClass]="{ 'active': hasFocus }"
      [dropEnabled]="isDroppable"
      [pop-over-trigger]="folderPopover"
      (onDropSuccess)="onDrop($event)"
      (dblclick)="folderManager.stepForward(folder);"
+     (document:click)="handleClick($event);"
+     (click)="handleClick($event);"
      (document:contextmenu)="handleContextMenu($event, folderPopover);"
      (contextmenu)="handleContextMenu($event, folderPopover);">
   <div class="folder-container"

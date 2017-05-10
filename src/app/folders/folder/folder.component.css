@@ -2,15 +2,23 @@
   float: left;
   max-width: 90px;
   margin: 10px;
-  background-color: LightGrey;
 }
 
 .folder-image-container {
   padding: 0% 20% 0% 20%;
 }
 
+.active .folder-image-container {
+  filter: brightness(90%);
+}
+
 .folder-text-container {
   text-align: center;
+  border-radius: 10px;
+}
+
+.active .folder-text-container {
+  background-color: LightGrey;
 }
 
 .img-non-draggable {

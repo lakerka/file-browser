@@ -33,7 +33,7 @@ export class FolderManager {
       let folder: Folder = this.path[i];
       if (curPath.indexOf(folder) != -1) {
         continue;
-      } else if (i + 1 > curPath.length) {
+      } else if (i + 1 > curPath.length && folder.hasParent()) {
         curPath.push(folder);
       } else {
         break;
@@ -100,14 +100,9 @@ export class FolderManager {
   }
 
   delete(folder: Folder) {
-    if (folder === this.cutFolder) {
-      this.cutFolder = undefined;
-    }
-    if (folder === this.copiedFolder) {
-      this.copiedFolder = undefined;
-    }
     if (folder !== undefined) {
       folder.parent.removeChild(folder);
+      this.updatePath();
     }
   }
 

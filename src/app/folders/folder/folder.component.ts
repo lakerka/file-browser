@@ -17,7 +17,9 @@ export class FolderComponent implements OnInit {
   @Input() folderManager: FolderManager;
 
   isDroppable: boolean = true;
+  hasFocus: boolean = false;
   elementRef: ElementRef;
+
 
   constructor(elementRef: ElementRef) {
     this.elementRef = elementRef;
@@ -28,12 +30,18 @@ export class FolderComponent implements OnInit {
 
   handleContextMenu(event: MouseEvent, popover: PopOverComponent) {
     let isFolderTarget: boolean = Utils.isNodeOneOfAncestors(event, this.elementRef.nativeElement);
+    this.hasFocus = isFolderTarget;
     if (isFolderTarget) {
       popover.show(event);
       event.preventDefault();
     } else {
         popover.hide();
     }
+  }
+
+  handleClick(event: MouseEvent) {
+    let isFolderTarget: boolean = Utils.isNodeOneOfAncestors(event, this.elementRef.nativeElement);
+    this.hasFocus = isFolderTarget;
   }
 
   onDrop(event: any) {
