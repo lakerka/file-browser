@@ -1,4 +1,6 @@
-.full-height {
+.folders-container {
+  padding-left: auto;
+  padding-right: auto;
   min-height: 100%;
   height: 100%;
 }
